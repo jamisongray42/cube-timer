@@ -1,7 +1,18 @@
 import QtQuick 2.7
 
 Page1Form {
-    button1.onClicked: {
-        console.log("Button Pressed. Entered text: " + textField1.text);
+    actionButton.onClicked: {
+        if(state === "start"){
+            state = "stop"
+            timeCounter.start()
+        }
+        else if(state === "stop"){
+            state = "reset"
+            timeCounter.stop()
+        }
+        else if(state === "reset"){
+            state = "start"
+            timeCounter.reset()
+        }
     }
 }

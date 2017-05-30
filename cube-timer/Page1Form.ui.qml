@@ -2,23 +2,56 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 
+import "qrc:///components/"
+
 Item {
-    property alias textField1: textField1
-    property alias button1: button1
+    height: 1136
+    property alias timeCounter: timeCounter
+    property alias actionButton: actionButton
 
-    RowLayout {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 20
-        anchors.top: parent.top
+    ColumnLayout {
+        id: columnLayout
+        anchors.rightMargin: 100
+        anchors.leftMargin: 100
+        anchors.fill: parent
 
-        TextField {
-            id: textField1
-            placeholderText: qsTr("Text Field")
+        TimeCounter {
+            id: timeCounter
+            opacity: 1
         }
+
 
         Button {
-            id: button1
-            text: qsTr("Press Me")
+            id: actionButton
+            text: qsTr("Start")
+            Layout.fillWidth: true
         }
+
+
     }
+    state: "start"
+    states: [
+        State {
+            name: "stop"
+
+            PropertyChanges {
+                target: actionButton
+                text: qsTr("Stop")
+            }
+        },
+        State {
+            name: "reset"
+            PropertyChanges {
+                target: actionButton
+                text: qsTr("Reset")
+            }
+        },
+        State {
+            name: "start"
+            PropertyChanges {
+                target: actionButton
+                text: qsTr("Start")
+            }
+        }
+    ]
 }

@@ -6,4 +6,7 @@
         <file>Page1.qml</file>
         <file>Page1Form.ui.qml</file>
     </qresource>
+    <qresource prefix="/components">
+        <file>TimeCounter.qml</file>
+    </qresource>
 </RCC>
