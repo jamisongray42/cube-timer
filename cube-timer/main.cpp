@@ -13,21 +13,23 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     QByteArray localMsg = msg.toLocal8Bit();
     switch (type) {
       case QtDebugMsg:
-        fprintf(stderr, "[%s] %s.Debug: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
+        fprintf(stdout, "[%s] %s.Debug: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
         break;
       case QtInfoMsg:
-        fprintf(stderr, "[%s] %s.Info: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
+        fprintf(stdout, "[%s] %s.Info: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
         break;
       case QtWarningMsg:
-        fprintf(stderr, "[%s] %s.Warning: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
+        fprintf(stdout, "[%s] %s.Warning: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
         break;
       case QtCriticalMsg:
-        fprintf(stderr, "[%s] %s.Critical: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
+        fprintf(stdout, "[%s] %s.Critical: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
         break;
       case QtFatalMsg:
-        fprintf(stderr, "[%s] %s.Fatal: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
+        fprintf(stdout, "[%s] %s.Fatal: %s\n", curTime.toString(timeFrmt).toLatin1().data(), context.category, localMsg.constData());
         abort();
       }
+    QTextStream s(stdout);
+    flush(s);
 }
 
 
