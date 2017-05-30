@@ -17,6 +17,7 @@ Item {
 
         TimeCounter {
             id: timeCounter
+            Layout.fillWidth: true
             opacity: 1
         }
 
