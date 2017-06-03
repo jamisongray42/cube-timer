@@ -3,11 +3,14 @@
 
 #include <QObject>
 
+class MainPageView;
+
 class ViewController : public QObject
 {
     Q_OBJECT
 
     QObject* m_rootItem;
+    MainPageView* m_mainPageView;
 
 public:
     explicit ViewController(QObject* rootItem, QObject *parent = nullptr);

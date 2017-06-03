@@ -1,12 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-    </qresource>
-    <qresource prefix="/pages">
-        <file>MainPage.qml</file>
-        <file>MainPageForm.ui.qml</file>
-    </qresource>
-    <qresource prefix="/components">
-        <file>TimeCounter.qml</file>
+        <file>components/TimeCounter.qml</file>
+        <file>pages/MainPage.qml</file>
+        <file>pages/MainPageForm.ui.qml</file>
     </qresource>
 </RCC>

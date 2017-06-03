@@ -2,11 +2,20 @@ QT += qml quick quickcontrols2
 
 CONFIG += c++11
 
+HEADERS += \
+    cubetimer.h \
+    viewcontroller.h \
+    pages/mainpageview.h \
+    defines.h
+
 SOURCES += main.cpp \
     cubetimer.cpp \
-    viewcontroller.cpp
+    viewcontroller.cpp \
+    pages/mainpageview.cpp
 
 RESOURCES += qml.qrc
+
+INCLUDEPATH += pages\
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -16,9 +25,6 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-HEADERS += \
-    cubetimer.h \
-    viewcontroller.h
 
 ios {
     QMAKE_INFO_PLIST = ios/Info.plist

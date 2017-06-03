@@ -1,5 +1,6 @@
 #include "cubetimer.h"
 #include "viewcontroller.h"
+#include "mainpageview.h"
 
 #include <QLoggingCategory>
 Q_LOGGING_CATEGORY(CubeTimerCat, "CubeTimer")
