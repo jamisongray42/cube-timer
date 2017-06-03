@@ -2,6 +2,7 @@ import QtQuick 2.7
 
 MainPageForm {
     objectName: "MainPage"
+    property string title: "Timer"
 
     signal logTime(int minutes, int seconds, int miliseconds)
 

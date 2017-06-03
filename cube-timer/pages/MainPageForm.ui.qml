@@ -2,11 +2,10 @@ import QtQuick 2.7
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.1
 
-import "qrc:///components/"
+import "../components"
 
 Item {
     id: item1
-    height: 1136
     property alias actionButton: actionButton
     property alias progressBar: progressBar
     property int pad: 24

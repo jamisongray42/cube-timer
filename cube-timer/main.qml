@@ -1,62 +1,141 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.1
 import QtQuick.Controls.Material 2.1
-import QtQuick.Layouts 1.0
+import QtQuick.Layouts 1.1
 
-import "qrc:///pages/"
+import "pages"
 
 ApplicationWindow {
+    id: root
     visible: true
     width: 640
     height: 1136
     title: qsTr("Cube Timer")
 
     Material.theme: Material.Dark
+    Material.accent: Material.LightBlue
 
     header: ToolBar{
-        ToolButton{
-            text: "\u22EE"
-            onClicked: mainMenu.open()
-            font.pointSize: 20
-            Menu{
-                id: mainMenu
-                MenuItem{
-                    text: "Menu Item1"
+        id: toolBar
+        Material.primary: Material.LightBlue
+
+        RowLayout{
+            ToolButton{
+                text: "\u2193"
+                visible: stackView.depth > 2
+                font.pointSize: 24
+                onClicked: {
+                    while(stackView.depth > 1){
+                        stackView.pop()
+                    }
+                    drawerListView.currentIndex = 0
                 }
-                MenuSeparator{ }
-                MenuItem{
-                    text: "Menu Item2"
+            }
+            ToolButton{
+                text: "\u2190"
+                visible: stackView.depth > 1
+                font.pointSize: 24
+                onClicked: {
+                    stackView.pop()
+                    drawerListView.currentIndex = -1 // TODO maybe keep history of these
                 }
+            }
+            ToolButton{
+                text: "\u2630"
+                font.pointSize: 24
+                onClicked: drawer.open()
             }
         }
     }
 
-    SwipeView {
-        id: swipeView
-        anchors.fill: parent
-        currentIndex: tabBar.currentIndex
-        interactive: false
+    Label{
+        z:10
+        id: toolBarTitleLabel
+        anchors.centerIn: toolBar
+        text: stackView.currentItem.title
+    }
 
-        MainPage{
-        }
+    Drawer {
+        id: drawer
+        width: 0.66 * parent.width
+        height: parent.height
 
-        Page {
-            Label {
-                text: qsTr("Second page")
-                anchors.centerIn: parent
+        ListView{
+            id: drawerListView
+            currentIndex: 0
+            anchors.fill: parent
+
+            delegate: ItemDelegate{
+                width: parent.width
+                text: model.title
+                highlighted: ListView.isCurrentItem
+                onClicked: {
+                    drawerListView.currentIndex = index
+
+                    if(stackView.currentItem.title !== model.title){
+                        if(model.title === "Timer")      stackView.push(mainPage)
+                        else if(model.title === "View Times") stackView.push(viewTimesPage)
+                        else if(model.title === "Settings") stackView.push(settingsPage)
+                        else if(model.title === "About") stackView.push(aboutPage)
+                    }
+
+                    drawer.close()
+                }
             }
+
+            model: ListModel{
+                ListElement{ title: "Timer" }
+                ListElement{ title: "View Times" }
+                ListElement{ title: "Settings" }
+                ListElement{ title: "About"}
+            }
+            ScrollIndicator.vertical: ScrollIndicator{}
         }
+
     }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
-        TabButton {
-            text: qsTr("First")
-        }
-        TabButton {
-            enabled: false
-            text: qsTr("Second")
-        }
+    StackView{
+       id: stackView
+       anchors.fill: parent
+       initialItem: mainPage
+       property int fadeDur: 200
+       pushEnter: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 0
+               to:1
+               duration: stackView.fadeDur
+           }
+       }
+       pushExit: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 1
+               to:0
+               duration: stackView.fadeDur
+           }
+       }
+       popEnter: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 0
+               to:1
+               duration:stackView.fadeDur
+           }
+       }
+       popExit: Transition {
+           PropertyAnimation {
+               property: "opacity"
+               from: 1
+               to:0
+               duration: stackView.fadeDur
+           }
+       }
     }
+    Component{ id: mainPage; MainPage{ } }
+    Component{ id: viewTimesPage; ViewTimesPage{ } }
+    Component{ id: settingsPage; SettingsPage{ } }
+    Component{ id: aboutPage; AboutPage{ } }
+
+
 }

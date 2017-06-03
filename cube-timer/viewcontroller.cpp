@@ -9,6 +9,9 @@ ViewController::ViewController(QObject* rootItem, QObject *parent) :
     m_rootItem(rootItem),
     m_mainPageView(new MainPageView(rootItem, this))
 {
+    connect(m_mainPageView, &MainPageView::saveTime, this, [&](QVariantHash data)->void{
+        (void)data; // TODO dispatch to database from here
+    });
 }
 
 ViewController::~ViewController(){
