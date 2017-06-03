@@ -8,8 +8,12 @@
 
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg) {
-    if(msg.contains("doing manual update"))
+    //TODO IGnore these messages for now so they dont pollute the log
+    // Will deal with them eventually
+    if(msg.contains("doing manual update") ||
+       msg.contains("TouchPointPressed without previous release event"))
         return;
+
     QDateTime curTime(QDateTime::currentDateTime());
     QString timeFrmt("hh:mm:ss:zzz");
     QByteArray localMsg = msg.toLocal8Bit();
