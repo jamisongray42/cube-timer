@@ -37,7 +37,7 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
         interactive: false
 
-        Page1 {
+        MainPage{
         }
 
         Page {

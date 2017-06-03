@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     qDebug() << "Starting Cube Timer";
 
     CubeTimer ct(engine.rootObjects().first());
-    (void) ct;
+    (void) ct; // Supress unused warning
 
     return app.exec();
 }

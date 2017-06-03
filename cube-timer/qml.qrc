@@ -3,8 +3,8 @@
         <file>main.qml</file>
     </qresource>
     <qresource prefix="/pages">
-        <file>Page1.qml</file>
-        <file>Page1Form.ui.qml</file>
+        <file>MainPage.qml</file>
+        <file>MainPageForm.ui.qml</file>
     </qresource>
     <qresource prefix="/components">
         <file>TimeCounter.qml</file>
