@@ -1,18 +1,68 @@
 import QtQuick 2.7
 
 Page1Form {
-    actionButton.onClicked: {
-        if(state === "start"){
-            state = "stop"
-            timeCounter.start()
+    id: page1
+
+    property int touchCount: 0
+    multiArea.onPressed: { touchCount += touchPoints.length; evaluateTouches() }
+    multiArea.onReleased: { touchCount -= touchPoints.length; evaluateTouches() }
+
+    function evaluateTouches(touches){
+        console.log("touchCount", touchCount)
+
+        switch(state){
+        case "base":{
+            console.log("base state")
+            if(touchCount >= 2){
+                holdTimer.start()
+            }
+            else{
+                if(progressBar.value >= 1){
+                    console.log("Start Timer!")
+                    actionButton.checked = true
+                    timeCounter.start()
+                    state = "started"
+                }
+                holdTimer.stop()
+                progressBar.value = 0
+            }
+            break;
         }
-        else if(state === "stop"){
-            state = "reset"
-            timeCounter.stop()
+
+        case "started":{
+            console.log("started state")
+            if(touchCount >= 2){
+                timeCounter.stop()
+                actionButton.checked = false
+            }
+            else if(touchCount == 0 && !timeCounter.running){
+                state = "stopped"
+            }
+            break;
         }
-        else if(state === "reset"){
-            state = "start"
-            timeCounter.reset()
+
+        case "stopped":{
+            console.log("stopped state")
+            if(touchCount >= 1){
+                timeCounter.reset()
+            }
+            else if(touchCount == 0){
+                state = "base"
+            }
+            break;
+        }
+        }
+    }
+
+    property double holdTime: 10
+    property double curTime: 0
+
+    Timer{
+        id: holdTimer
+        interval: 10
+        repeat: true
+        onTriggered: {
+            progressBar.value += 1.0 * interval / 1000
         }
     }
 }

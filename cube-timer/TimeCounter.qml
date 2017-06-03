@@ -3,9 +3,12 @@ import QtQuick 2.0
 
 
 Item {
+
+    property alias fontPointSize: textItem.font.pointSize
     property int minutes: 0
     property int seconds: 0
     property int miliSeconds: 0
+    property alias running: msTimer.running
 
     property bool countUp: true // set to false to count down
 
@@ -55,7 +58,6 @@ Item {
         id: textItem
         color: "white"
         anchors.centerIn: parent
-        font.pixelSize: 80
         text: "<pre>" + padZero(minutes) + ":" + padZero(seconds) + "." + padZero(parseInt(miliSeconds/10)) + "</pre>"
     }
 
@@ -65,8 +67,6 @@ Item {
         repeat: true
 
         onTriggered: {
-            console.log("Timer Triggered")
-
             var currentTime = new Date().getTime()
             var elapsed = currentTime - startTime
             startTime = currentTime

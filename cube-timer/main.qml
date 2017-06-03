@@ -23,6 +23,7 @@ ApplicationWindow {
                 MenuItem{
                     text: "Menu Item1"
                 }
+                MenuSeparator{ }
                 MenuItem{
                     text: "Menu Item2"
                 }
@@ -34,6 +35,7 @@ ApplicationWindow {
         id: swipeView
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
+        interactive: false
 
         Page1 {
         }
@@ -53,6 +55,7 @@ ApplicationWindow {
             text: qsTr("First")
         }
         TabButton {
+            enabled: false
             text: qsTr("Second")
         }
     }

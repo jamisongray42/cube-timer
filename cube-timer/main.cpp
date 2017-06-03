@@ -8,6 +8,8 @@
 
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg) {
+    if(msg.contains("doing manual update"))
+        return;
     QDateTime curTime(QDateTime::currentDateTime());
     QString timeFrmt("hh:mm:ss:zzz");
     QByteArray localMsg = msg.toLocal8Bit();
