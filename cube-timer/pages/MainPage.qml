@@ -10,11 +10,14 @@ MainPageForm {
     multiArea.onPressed: { touchCount += touchPoints.length; evaluateTouches() }
     multiArea.onReleased: { touchCount -= touchPoints.length; evaluateTouches() }
 
+    property bool debugMode: true
+    property int requiredTouchCount: debugMode? 1 : 2 // require only one touch when debugMode, ie for desktop developement
+
     function evaluateTouches(touches){
 
         switch(state){
         case "base":{
-            if(touchCount >= 2){
+            if(touchCount >= requiredTouchCount){
                 holdTimer.start()
             }
             else{
@@ -30,7 +33,7 @@ MainPageForm {
         }
 
         case "started":{
-            if(touchCount >= 2){
+            if(touchCount >= requiredTouchCount){
                 timeCounter.stop()
                 logTime(timeCounter.minutes, timeCounter.seconds, timeCounter.miliSeconds)
                 actionButton.checked = false
