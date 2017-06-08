@@ -52,6 +52,7 @@ ApplicationWindow {
         z:10
         id: toolBarTitleLabel
         anchors.centerIn: toolBar
+        font.pixelSize: 24
         text: stackView.currentItem.title
     }
 
