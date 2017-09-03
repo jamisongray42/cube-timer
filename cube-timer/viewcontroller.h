@@ -24,6 +24,7 @@ public:
 
 signals:
 public slots:
+    void updateTimesPage();
 
 };
 

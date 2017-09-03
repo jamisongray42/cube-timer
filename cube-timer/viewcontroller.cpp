@@ -18,14 +18,20 @@ ViewController::ViewController(QObject* rootItem, QObject *parent)
     connect(m_mainPageView, &MainPageView::saveTime, this, [&](QVariantHash data)->void{
         QString currentEvent("3x3");
         m_database->addRun(data[LOGTIME_RUNTIME_T].toTime(), data[LOGTIME_DATETIME_DT].toDateTime(), currentEvent, "Notes about this run");
+        updateTimesPage();
     });
 
     m_database->initDB("QSQLITE", "data");
+    updateTimesPage();
 }
 
 ViewController::~ViewController(){
     qCDebug(ViewControllerCat) << "~ViewController()";
     delete m_mainPageView;
     delete m_database;
+}
+
+void ViewController::updateTimesPage(){
+    m_timesPageView->populateTimes(m_database->getRuns());
 }
 

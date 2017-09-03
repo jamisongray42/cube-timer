@@ -13,8 +13,10 @@ public:
     ~DBHandle();
 
     bool initDB(QString type, QString dbName);
-signals:
 
+    QList<QHash<QString, QVariant>> getRuns();
+
+signals:
 public slots:
     bool addEvent(QString title, QString desc);
     bool addRun(QTime runTime, QDateTime dateTime, QString event, QString notes);

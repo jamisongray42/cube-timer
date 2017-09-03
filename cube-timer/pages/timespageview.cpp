@@ -17,6 +17,7 @@ TimesPageView::~TimesPageView(){
 }
 
 void TimesPageView::initialise(){
+    return;
     QTime time(0, 0, 0);
     QList<QHash<QString, QVariant>> r;
     for(int i=0; i<100; ++i){
@@ -36,7 +37,7 @@ void TimesPageView::populateTimes(QList<QHash<QString, QVariant>> records){
         QMetaObject::invokeMethod(m_rootItem, "addTime",
                                   Q_ARG(QVariant, r[LOGTIME_RUNID_I]),
                                   Q_ARG(QVariant, r[LOGTIME_RUNTIME_T].toTime().toString(Qt::ISODateWithMs)),
-                                  Q_ARG(QVariant, r[LOGTIME_DATETIME_DT].toDate().toString(Qt::ISODate)));
+                                  Q_ARG(QVariant, r[LOGTIME_DATETIME_DT].toDateTime().toString(Qt::ISODate)));
     }
 }
 
