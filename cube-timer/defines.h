@@ -4,10 +4,12 @@
 /*
  * These will represent parameter names
  * the suffix will indicate the type
+ * _I -> Int
  * _T -> QTime
  * _DT -> QDateTime
  */
 /*******MainPageView*********/
+#define LOGTIME_RUNID_I "logtimeRunId"
 #define LOGTIME_RUNTIME_T "logtimeRunTime"
 #define LOGTIME_DATETIME_DT "logtimeDateTime"
 

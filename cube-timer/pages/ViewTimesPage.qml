@@ -5,15 +5,13 @@ ViewTimesPageForm {
     property string title: "View Times"
 
     function clearAll(){
-        console.log("Clearing times page")
         runListModel.clear()
     }
 
-    function addTime(id, time, date){
-        console.log("Adding time", time, "with date", date, "with id", id)
+    function addTime(id, runTime, date){
         runListModel.append({
                                 "runId": id,
-                                "runTime": time,
+                                "runTime": runTime,
                                 "dateTime": date
                             })
     }

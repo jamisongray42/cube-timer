@@ -1,4 +1,5 @@
 #include "timespageview.h"
+#include "defines.h"
 
 #include <QTime>
 
@@ -17,20 +18,25 @@ TimesPageView::~TimesPageView(){
 
 void TimesPageView::initialise(){
     QTime time(0, 0, 0);
-    QList<QPair<int, QTime>> r;
-    for(size_t i=0; i<10; ++i)
-        r.append(QPair<int, QTime>(i, time.addSecs(i)));
+    QList<QHash<QString, QVariant>> r;
+    for(int i=0; i<100; ++i){
+        QHash<QString, QVariant> record;
+        record[LOGTIME_RUNID_I] = i;
+        record[LOGTIME_RUNTIME_T] = time.addSecs(i).addMSecs((1.0*qrand()/RAND_MAX) * 1000);
+        record[LOGTIME_DATETIME_DT] = QDateTime::currentDateTime();
+        r.append(record);
+    }
     populateTimes(r);
 }
 
-void TimesPageView::populateTimes(QList<QPair<int, QTime>> records){
-    qCDebug(TimesPageViewCat) << "Populating Times" << records;
+void TimesPageView::populateTimes(QList<QHash<QString, QVariant>> records){
     QMetaObject::invokeMethod(m_rootItem, "clearAll");
-    QPair<int, QTime> pair;
-    foreach (pair, records) {
-        int id(pair.first);
-        QTime runTime(pair.second);
-        QMetaObject::invokeMethod(m_rootItem, "addTime", Q_ARG(QVariant, id), Q_ARG(QVariant, runTime.toString(Qt::TextDate)), Q_ARG(QVariant, "tempDate"));
+    QHash<QString, QVariant> r;
+    foreach (r, records) {
+        QMetaObject::invokeMethod(m_rootItem, "addTime",
+                                  Q_ARG(QVariant, r[LOGTIME_RUNID_I]),
+                                  Q_ARG(QVariant, r[LOGTIME_RUNTIME_T].toTime().toString(Qt::ISODateWithMs)),
+                                  Q_ARG(QVariant, r[LOGTIME_DATETIME_DT].toDate().toString(Qt::ISODate)));
     }
 }
 

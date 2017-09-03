@@ -2,7 +2,7 @@
 #define TIMESPAGEVIEW_H
 
 #include <QObject>
-#include <QTime>
+#include <QVariant>
 
 #include "viewbase.h"
 
@@ -18,7 +18,7 @@ public:
 
 signals:
 public slots:
-    void populateTimes(QList<QPair<int/*id*/, QTime/*runTime*/>> records);
+    void populateTimes(QList<QHash<QString, QVariant>> records);
 };
 
 #endif // TIMESPAGEVIEW_H

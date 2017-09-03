@@ -16,23 +16,35 @@ Item {
         ListElement{runId: 3; runTime: "runTime"; dateTime: "dateTime"}
     }
 
-    Flow {
-        id: flow1
-        spacing: 24
-        anchors.rightMargin: 24
-        anchors.leftMargin: 24
-        anchors.bottomMargin: 24
-        anchors.topMargin: 24
+    Flickable {
+        id: flickable
+        flickableDirection: Flickable.VerticalFlick
+        ScrollBar.vertical: ScrollBar{}
         anchors.fill: parent
+        contentHeight: recordFlow.implicitHeight + 2 * pad
 
-        Repeater{
-            id: repeater
-            model: runListModel
-            delegate: Button{
-                text: runTime + "\n" + dateTime
-//                onClicked: console.log("runId", runId)
+        Flow {
+            id: recordFlow
+            x: 24
+            y: 24
+            spacing: 24
+            anchors.rightMargin: 24
+            anchors.leftMargin: 24
+            anchors.bottomMargin: 24
+            anchors.topMargin: 24
+            anchors.fill: parent
+
+            Repeater{
+                id: repeater
+                model: runListModel
+                delegate: Button{
+                    width: (root.width - pad * 4) / 3 - 0.5
+                    text: runTime + "\n" + dateTime
+                    //                onClicked: console.log("runId", runId)
+                }
             }
-        }
 
+        }
     }
+
 }
