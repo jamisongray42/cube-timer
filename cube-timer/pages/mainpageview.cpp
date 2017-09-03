@@ -6,15 +6,18 @@
 #include <QLoggingCategory>
 Q_LOGGING_CATEGORY(MainPageViewCat, "MainPageView")
 
-MainPageView::MainPageView(QObject* rootItem, QObject *parent) :
-    QObject(parent),
-    m_rootItem(rootItem->findChild<QObject*>("MainPage"))
+MainPageView::MainPageView(QObject* rootItem, QObject *parent)
+    : ViewBase(parent)
 {
-    connect(m_rootItem, SIGNAL(logTime(int,int,int)), this, SLOT(logTime(int,int,int)));
+    lookForChild(rootItem, "MainPage");
 }
 
 MainPageView::~MainPageView(){
     qCDebug(MainPageViewCat) << "~MainPageView()";
+}
+
+void MainPageView::initialise(){
+    connect(m_rootItem, SIGNAL(logTime(int,int,int)), this, SLOT(logTime(int,int,int)));
 }
 
 void MainPageView::logTime(int minutes, int seconds, int miliseconds){

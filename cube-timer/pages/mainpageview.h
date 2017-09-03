@@ -4,14 +4,17 @@
 #include <QObject>
 #include <QVariantHash>
 
-class MainPageView : public QObject
+#include "viewbase.h"
+
+class MainPageView : public ViewBase
 {
     Q_OBJECT
 
-    QObject* m_rootItem;
 public:
     explicit MainPageView(QObject* rootItem, QObject *parent = nullptr);
     ~MainPageView();
+
+    void initialise();
 
 signals:
     void saveTime(QVariantHash);

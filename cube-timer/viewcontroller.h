@@ -3,17 +3,20 @@
 
 #include <QObject>
 
-class MainPageView;
 class DBHandle;
+class MainPageView;
+class TimesPageView;
 
 class ViewController : public QObject
 {
     Q_OBJECT
 
     QObject* m_rootItem;
-    MainPageView* m_mainPageView;
 
     DBHandle* m_database;
+
+    MainPageView* m_mainPageView;
+    TimesPageView* m_timesPageView;
 
 public:
     explicit ViewController(QObject* rootItem, QObject *parent = nullptr);
@@ -22,6 +25,8 @@ public:
 signals:
 
 public slots:
+private slots:
+    void createPage(int index);
 };
 
 #endif // VIEWCONTROLLER_H

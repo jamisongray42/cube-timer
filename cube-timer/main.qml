@@ -12,6 +12,8 @@ ApplicationWindow {
     height: 1136
     title: qsTr("Cube Timer")
 
+    signal switchedToPage(int index)
+
     Material.theme: Material.Dark
     Material.accent: Material.LightBlue
 
@@ -63,8 +65,8 @@ ApplicationWindow {
 
         ListView{
             id: drawerListView
-            currentIndex: 0
             anchors.fill: parent
+            currentIndex: 0
 
             delegate: ItemDelegate{
                 width: parent.width
@@ -80,6 +82,7 @@ ApplicationWindow {
                         else if(model.title === "About") stackView.push(aboutPage)
                     }
 
+                    switchedToPage(index)
                     drawer.close()
                 }
             }
