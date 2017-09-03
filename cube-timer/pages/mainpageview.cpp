@@ -19,9 +19,7 @@ MainPageView::~MainPageView(){
 
 void MainPageView::logTime(int minutes, int seconds, int miliseconds){
     QVariantHash data;
-    data[LOGTIME_MINUTES_I] = minutes;
-    data[LOGTIME_SECONDS_I] = seconds;
-    data[LOGTIME_MILISECONDS_I] = miliseconds;
+    data[LOGTIME_RUNTIME_T] = QTime(0, minutes, seconds, miliseconds);
     data[LOGTIME_DATETIME_DT] = QDateTime::currentDateTime();
     emit saveTime(data);
     qCDebug(MainPageViewCat) << "LoggingTime" << data;

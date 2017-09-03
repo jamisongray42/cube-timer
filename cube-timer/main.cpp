@@ -47,12 +47,18 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(myMessageOutput);
     QQuickStyle::setStyle("Material");
 
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
-    qDebug() << "Starting Cube Timer";
+    int rc(0);
+    {
+        qWarning() << "Starting Cube Timer";
 
-    CubeTimer ct(engine.rootObjects().first());
-    (void) ct; // Supress unused warning
+        QQmlApplicationEngine engine;
+        engine.load(QUrl(QLatin1String("qrc:/main.qml")));
 
-    return app.exec();
+        CubeTimer ct(engine.rootObjects().first());
+        (void) ct; // Supress unused warning
+        rc = app.exec();
+    }
+
+    qWarning() << "Cube Timer Exiting with code" << rc;
+    return rc;
 }

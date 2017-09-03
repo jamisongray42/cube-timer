@@ -4,6 +4,7 @@
 #include <QObject>
 
 class MainPageView;
+class DBHandle;
 
 class ViewController : public QObject
 {
@@ -11,6 +12,8 @@ class ViewController : public QObject
 
     QObject* m_rootItem;
     MainPageView* m_mainPageView;
+
+    DBHandle* m_database;
 
 public:
     explicit ViewController(QObject* rootItem, QObject *parent = nullptr);

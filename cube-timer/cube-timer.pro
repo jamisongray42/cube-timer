@@ -1,4 +1,4 @@
-QT += qml quick quickcontrols2
+QT += qml quick quickcontrols2 sql
 
 CONFIG += c++11
 
@@ -6,12 +6,14 @@ HEADERS += \
     cubetimer.h \
     viewcontroller.h \
     pages/mainpageview.h \
-    defines.h
+    defines.h \
+    dbhandle.h
 
 SOURCES += main.cpp \
     cubetimer.cpp \
     viewcontroller.cpp \
-    pages/mainpageview.cpp
+    pages/mainpageview.cpp \
+    dbhandle.cpp
 
 RESOURCES += qml.qrc
 
