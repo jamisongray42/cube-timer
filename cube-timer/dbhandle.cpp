@@ -8,8 +8,6 @@
 #include <QLoggingCategory>
 Q_LOGGING_CATEGORY(DBHandleCat, "DBHandle")
 
-QVariant addAuthor(QSqlQuery &q, const QString &name, const QDate &birthdate);
-
 DBHandle::DBHandle(QObject *parent) : QObject(parent)
 {
 }
