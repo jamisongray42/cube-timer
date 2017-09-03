@@ -136,10 +136,10 @@ ApplicationWindow {
            }
        }
     }
-    Component{ id: mainPage; MainPage{ } }
-    Component{ id: viewTimesPage; ViewTimesPage{ } }
-    Component{ id: settingsPage; SettingsPage{ } }
-    Component{ id: aboutPage; AboutPage{ } }
 
+    MainPage{ id: mainPage;           visible: false}
+    ViewTimesPage{ id: viewTimesPage; visible: false}
+    SettingsPage{ id: settingsPage;   visible: false}
+    AboutPage{ id: aboutPage;         visible: false}
 
 }

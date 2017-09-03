@@ -15,8 +15,6 @@ ViewController::ViewController(QObject* rootItem, QObject *parent)
     , m_mainPageView(new MainPageView(rootItem, this))
     , m_timesPageView(new TimesPageView(rootItem, this))
 {
-    connect(m_rootItem, SIGNAL(switchedToPage(int)), this, SLOT(createPage(int)));
-
     connect(m_mainPageView, &MainPageView::saveTime, this, [&](QVariantHash data)->void{
         QString currentEvent("3x3");
         m_database->addRun(data[LOGTIME_RUNTIME_T].toTime(), data[LOGTIME_DATETIME_DT].toDateTime(), currentEvent, "Notes about this run");
@@ -31,11 +29,3 @@ ViewController::~ViewController(){
     delete m_database;
 }
 
-void ViewController::createPage(int index){
-    switch (index) {
-    case -1:  break;
-    case 0: m_mainPageView->lookForChild(m_rootItem, "MainPage"); break;
-    case 1: m_timesPageView->lookForChild(m_rootItem, "ViewTimesPage"); break;
-    default: break;
-    }
-}

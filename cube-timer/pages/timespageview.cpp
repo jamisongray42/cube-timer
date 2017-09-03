@@ -8,7 +8,7 @@ Q_LOGGING_CATEGORY(TimesPageViewCat, "TimesPageView")
 TimesPageView::TimesPageView(QObject* rootItem, QObject *parent)
     : ViewBase(parent)
 {
-    lookForChild(rootItem, "ViewTimesPage"); // This fails because the page isnt created until its requested
+    lookForChild(rootItem, "ViewTimesPage");
 }
 
 TimesPageView::~TimesPageView(){
@@ -16,7 +16,6 @@ TimesPageView::~TimesPageView(){
 }
 
 void TimesPageView::initialise(){
-
     QTime time(0, 0, 0);
     QList<QPair<int, QTime>> r;
     for(size_t i=0; i<10; ++i)
@@ -31,7 +30,7 @@ void TimesPageView::populateTimes(QList<QPair<int, QTime>> records){
     foreach (pair, records) {
         int id(pair.first);
         QTime runTime(pair.second);
-        QMetaObject::invokeMethod(m_rootItem, "addTime", Q_ARG(QVariant, id), Q_ARG(QVariant, runTime));
+        QMetaObject::invokeMethod(m_rootItem, "addTime", Q_ARG(QVariant, id), Q_ARG(QVariant, runTime.toString(Qt::TextDate)), Q_ARG(QVariant, "tempDate"));
     }
 }
 

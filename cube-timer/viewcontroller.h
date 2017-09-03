@@ -23,10 +23,8 @@ public:
     ~ViewController();
 
 signals:
-
 public slots:
-private slots:
-    void createPage(int index);
+
 };
 
 #endif // VIEWCONTROLLER_H

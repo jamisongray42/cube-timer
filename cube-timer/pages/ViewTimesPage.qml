@@ -6,9 +6,17 @@ ViewTimesPageForm {
 
     function clearAll(){
         console.log("Clearing times page")
+        runListModel.clear()
     }
 
-    function addTime(id, time){
-        console.log("Adding time", time, "with id", id)
+    function addTime(id, time, date){
+        console.log("Adding time", time, "with date", date, "with id", id)
+        runListModel.append({
+                                "runId": id,
+                                "runTime": time,
+                                "dateTime": date
+                            })
     }
+
+
 }

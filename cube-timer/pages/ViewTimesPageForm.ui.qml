@@ -7,6 +7,14 @@ import "../components"
 Item {
     id: item1
     property int pad: 24
+    property alias runListModel: runListModel
+
+    ListModel{
+        id: runListModel
+        ListElement{runId: 1; runTime: "runTime"; dateTime: "dateTime"}
+        ListElement{runId: 2; runTime: "runTime"; dateTime: "dateTime"}
+        ListElement{runId: 3; runTime: "runTime"; dateTime: "dateTime"}
+    }
 
     Flow {
         id: flow1
@@ -17,54 +25,14 @@ Item {
         anchors.topMargin: 24
         anchors.fill: parent
 
-        Button {
-            id: button
-            text: qsTr("some time")
+        Repeater{
+            id: repeater
+            model: runListModel
+            delegate: Button{
+                text: runTime + "\n" + dateTime
+//                onClicked: console.log("runId", runId)
+            }
         }
 
-        Button {
-            id: button1
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button2
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button3
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button4
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button5
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button6
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button7
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button8
-            text: qsTr("some time")
-        }
-
-        Button {
-            id: button9
-            text: qsTr("some time")
-        }
     }
 }
