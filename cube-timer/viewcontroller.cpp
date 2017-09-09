@@ -10,6 +10,7 @@
 using namespace stefanfrings;
 
 #include <QNetworkInterface>
+#include <QStandardPaths>
 
 #include <QLoggingCategory>
 Q_LOGGING_CATEGORY(ViewControllerCat, "ViewController")
@@ -29,7 +30,9 @@ ViewController::ViewController(QObject* rootItem, QObject *parent)
         updateTimesPage();
     });
 
-    m_database->initDB("QSQLITE", "data");
+    QString path(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "/ct_db");
+    qCWarning(ViewControllerCat) << "DB path" << path;
+    m_database->initDB("QSQLITE", path);
     updateTimesPage();
 
     setupServer();
