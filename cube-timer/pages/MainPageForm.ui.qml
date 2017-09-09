@@ -12,6 +12,39 @@ Item {
 
     property alias timeCounter: timeCounter
     property alias multiArea: multiArea
+    property alias lanAddr: lanAddrLabel.text
+
+    Item {
+        id: item2
+        height: 50
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.margins: pad
+
+        RowLayout {
+            id: rowLayout
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.top: parent.top
+            anchors.leftMargin: 0
+
+            Label {
+                id: label
+                text: qsTr("LAN Address:")
+                font.pointSize: 20
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            Label {
+                id: lanAddrLabel
+                text: qsTr("")
+                font.pointSize: 20
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+    }
 
     TimeCounter {
         id: timeCounter
@@ -58,6 +91,7 @@ Item {
             anchors.fill: parent
         }
     }
+
 
     state: "base"
     states: [

@@ -20,6 +20,10 @@ void MainPageView::initialise(){
     connect(m_rootItem, SIGNAL(logTime(int,int,int)), this, SLOT(logTime(int,int,int)));
 }
 
+void MainPageView::setLANAddr(QString addrStr) {
+    m_rootItem->setProperty("lanAddr", addrStr);
+}
+
 void MainPageView::logTime(int minutes, int seconds, int miliseconds){
     QVariantHash data;
     data[LOGTIME_RUNTIME_T] = QTime(0, minutes, seconds, miliseconds);

@@ -20,6 +20,8 @@ signals:
     void saveTime(QVariantHash);
 
 public slots:
+    void setLANAddr(QString);
+
 private slots:
     void logTime(int minutes, int seconds, int miliseconds);
 };
