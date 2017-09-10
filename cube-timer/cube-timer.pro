@@ -29,19 +29,10 @@ RESOURCES += qml.qrc
 
 INCLUDEPATH += pages\
 
-# Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
-
-
-ios {
+#ios {
 #    QMAKE_INFO_PLIST = ios/Info.plist
-    ios_icon.files = $$files($$PWD/ios/Icon-*.png)
-    QMAKE_BUNDLE_DATA += ios_icon
-}
+#    ios_icon.files = $$files($$PWD/ios/Icon-*.png)
+#    QMAKE_BUNDLE_DATA += ios_icon
+#}
 
 include(../libs/QtWebApp/httpserver/httpserver.pri)

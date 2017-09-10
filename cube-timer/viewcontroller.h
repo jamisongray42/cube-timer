@@ -37,6 +37,7 @@ public slots:
 
 private:
     void setupServer();
+    void findLANAddr();
 
 };
 

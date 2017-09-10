@@ -35,7 +35,8 @@ ViewController::ViewController(QObject* rootItem, QObject *parent)
     m_database->initDB("QSQLITE", path);
     updateTimesPage();
 
-    setupServer();
+//    setupServer();
+    findLANAddr();
 }
 
 ViewController::~ViewController(){
@@ -58,7 +59,9 @@ void ViewController::setupServer(){
     m_listenerSettings->setValue("maxRequestSize", 16000);
     m_listenerSettings->setValue("maxMultiPortSize", 1000000);
     m_httpListener = new HttpListener(m_listenerSettings, new RequestMapper(this), this);
+}
 
+void ViewController::findLANAddr() {
     QString lanAddr("Not Found");
     foreach(QHostAddress address, QNetworkInterface::allAddresses()){
         if(address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress(QHostAddress::LocalHost)){
@@ -68,4 +71,6 @@ void ViewController::setupServer(){
     }
     m_mainPageView->setLANAddr(lanAddr);
 }
+
+
 
