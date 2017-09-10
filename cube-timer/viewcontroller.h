@@ -10,8 +10,8 @@ class MainPageView;
 class TimesPageView;
 class QSettings;
 
-namespace stefanfrings { class HttpListener; }
-using namespace stefanfrings;
+//namespace stefanfrings { class HttpListener; }
+//using namespace stefanfrings;
 
 class ViewController : public QObject
 {
@@ -24,8 +24,8 @@ class ViewController : public QObject
     MainPageView* m_mainPageView;
     TimesPageView* m_timesPageView;
 
-    QSettings* m_listenerSettings;
-    HttpListener* m_httpListener;
+//    QSettings* m_listenerSettings;
+//    HttpListener* m_httpListener;
 
 public:
     explicit ViewController(QObject* rootItem, QObject *parent = nullptr);

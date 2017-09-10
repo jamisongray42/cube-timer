@@ -1,0 +1,3 @@
+[submodule "libs/QttpServer"]
+	path = libs/QttpServer
+	url = https://github.com/brokep/QttpServer.git
