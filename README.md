@@ -27,7 +27,7 @@ Simple speedcubing timer.
 ## Built With
 
 * [Qt](https://www.qt.io/)
-* [QtWebApp](http://stefanfrings.de/qtwebapp/index.html)
+* [QttpServer](https://github.com/brokep/QttpServer)
 
 ## Contributing
 

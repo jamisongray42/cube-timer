@@ -14,7 +14,6 @@ HEADERS += \
     $$PWD/dbhandle.h \
     $$PWD/pages/timespageview.h \
     $$PWD/pages/viewbase.h
-#    serv/requestmapper.h
 
 SOURCES += $$PWD/main.cpp \
     $$PWD/cubetimer.cpp \
@@ -23,7 +22,6 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/dbhandle.cpp \
     $$PWD/pages/timespageview.cpp \
     $$PWD/pages/viewbase.cpp
-#    serv/requestmapper.cpp
 
 RESOURCES += $$PWD/qml.qrc
 
@@ -34,8 +32,6 @@ INCLUDEPATH += $$PWD/pages\
 #    ios_icon.files = $$files($$PWD/ios/Icon-*.png)
 #    QMAKE_BUNDLE_DATA += ios_icon
 #}
-
-#include(../libs/QtWebApp/httpserver/httpserver.pri)
 
 mac {
     # Since things are buried in the app folder, we'll copy configs there.

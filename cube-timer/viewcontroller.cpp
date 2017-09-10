@@ -7,11 +7,6 @@
 
 #include "qttpserver"
 
-//#include "serv/requestmapper.h"
-
-//#include "httplistener.h"
-//using namespace stefanfrings;
-
 #include <QNetworkInterface>
 #include <QStandardPaths>
 
@@ -24,8 +19,6 @@ ViewController::ViewController(QObject* rootItem, QObject *parent)
     , m_database(new DBHandle(this))
     , m_mainPageView(new MainPageView(rootItem, this))
     , m_timesPageView(new TimesPageView(rootItem, this))
-//    , m_listenerSettings(new QSettings(this))
-//    , m_httpListener(nullptr)
 {
     connect(m_mainPageView, &MainPageView::saveTime, this, [&](QVariantHash data)->void{
         QString currentEvent("3x3");
@@ -53,16 +46,6 @@ void ViewController::updateTimesPage(){
 }
 
 void ViewController::setupServer(){
-//    m_listenerSettings->beginGroup("listenerGroup");
-//    m_listenerSettings->setValue("port", VC_LISTEN_PORT);
-//    m_listenerSettings->setValue("minThreads", 1);
-//    m_listenerSettings->setValue("maxThreads", 10);
-//    m_listenerSettings->setValue("cleanupInterval", 1000);
-//    m_listenerSettings->setValue("readTimeout", 60000);
-//    m_listenerSettings->setValue("maxRequestSize", 16000);
-//    m_listenerSettings->setValue("maxMultiPortSize", 1000000);
-//    m_httpListener = new HttpListener(m_listenerSettings, new RequestMapper(this), this);
-
     qttp::HttpServer* svr = qttp::HttpServer::getInstance();
     svr->initialize();
 
