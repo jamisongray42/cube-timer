@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>components/TimeCounter.qml</file>
+        <file>pages/MainPage.qml</file>
+        <file>pages/MainPageForm.ui.qml</file>
+        <file>pages/AboutPage.qml</file>
+        <file>pages/AboutPageForm.ui.qml</file>
+        <file>pages/SettingsPage.qml</file>
+        <file>pages/SettingsPageForm.ui.qml</file>
+        <file>pages/ViewTimesPage.qml</file>
+        <file>pages/ViewTimesPageForm.ui.qml</file>
+    </qresource>
+</RCC>
